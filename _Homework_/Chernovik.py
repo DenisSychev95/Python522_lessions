@@ -106,15 +106,16 @@ def deleter(m_dir):
     :param m_dir: Удаляемая директория
     """
     if os.path.exists(m_dir):
-        for root_n, dirs_n, files_n in os.walk(m_dir):
-            for file_del1 in files_n:
-                to_del_file = os.path.join(root_n, file_del1)
-                os.remove(to_del_file)
-        print(f"Все файлы корневой директории {m_dir} удалены")
         for root_n, dirs_n, files_n in os.walk(m_dir, topdown=False):
             if not os.listdir(root_n):
                 os.rmdir(root_n)
-        print(f"Вложенные директории {m_dir} удалены. Корневая директория удалена")
+            else:
+                for file_del1 in files_n:
+                    to_del_file = os.path.join(root_n, file_del1)
+                    os.remove(to_del_file)
+        print(f"Все файлы из корневой директории: {m_dir}-удалены, директория {m_dir} удалена")
+    else:
+        print("Директории не существует")
 
 
 test_text = """"Компания CD Projekt RED официально подтвердила, что The Witcher 4 (рабочее название Polaris) не выйдет

@@ -3785,4 +3785,86 @@ import re
 # git rm - убрать из отслеживания
 
 # print("Данные на локальном репозитории")
-print("Код созданный на новом устройстве")
+# print("Код созданный на новом устройстве")
+
+#  Занятие 20 от 26.03.25
+# import os
+#
+# # dirs = [r"Work\F1", r"Work\F2\F21"]
+# # for d in dirs:
+# #     os.makedirs(d)
+# files = {
+#     "Work": ["w.txt"],
+#     r"Work\F1": ["f11.txt", "f12.txt", "f13.txt"],
+#     r"Work\F2\F21": ["f211.txt", "f212.txt"],
+# }
+
+
+# for key, value in files.items():
+#     for file in value:
+#         file_path = (os.path.join(key, file))
+#         open(file_path, "w").close()
+# # Пути файлов
+# # Work\w.txt
+# # Work\F1\f11.txt
+# # Work\F1\f12.txt
+# # Work\F1\f13.txt
+# # Work\F2\F21\f211.txt
+# # Work\F2\F21\f212.txt
+
+# file_with_text = [r"Work\w.txt", r"Work\F1\f12.txt", r"Work\F2\F21\f211.txt", r"Work\F2\F21\f212.txt"]
+# for file in file_with_text:
+#     with open(file, "w") as f:
+#         f.write(f"Некоторый текст для файла {file}")
+
+# for roots, dirs, files in os.walk("Work"):
+
+# def print_tree(topdown):
+#     print(f"Обход Work {"сверху вниз" if topdown else "снизу вверх"}")
+#     for root_, dirs_, files_ in os.walk("Work", topdown):
+#         print(root_)
+#         print(dirs_)
+#         print(files_)a
+#     print("-" * 50)
+#
+#
+# print_tree(False)
+# print_tree(True)
+
+import os
+import time
+
+# path = "main.py"
+# print(os.path.getsize(path))  # размер файла
+# print(os.path.getatime(path))  # время последнего доступа к файлу в секундах
+# print(os.path.getmtime(path))  # время последнего изменения файла
+# print(os.path.getctime(path))  # время создания файла(на Windows)
+# size = os.path.getsize(path)
+# a_time = os.path.getatime(path)
+# m_time = os.path.getmtime(path)
+# c_time = os.path.getctime(path)
+#
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(a_time)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(m_time)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(c_time)))
+# print(size)
+# print(size // 1024)
+
+# file_path = r"H:\_STUDY 2025\Doc_pycharm\_Homework_\Domashka.py"
+# if os.path.exists(file_path):
+#     directory, file = os.path.split(file_path)
+#     a_time = os.path.getatime(file_path)
+#     print(f"{file} ({directory})-{a_time} sec")
+#
+# else:
+#     print(f"Файл {file_path} не существует")
+
+# dir_name = "Work"
+# objs = os.listdir(dir_name)
+# print(objs)
+# for obj in objs:
+#     p = os.path.join(dir_name, obj)
+#     if os.path.isfile(p):
+#         print(f"{p} - file -{os.path.getsize(p)} bytes ")
+#     if os.path.isdir(p):
+#         print(f"{p}-dir")
