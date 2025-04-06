@@ -2896,7 +2896,7 @@ from turtledemo.penrose import start
 # def decor(arg):
 #     def sub_decor(fn):
 #         def inner(*args, **kwargs):
-#             print(args) # звездочку указываем только когда принимаем аргументы  и когда вызываем функц, в остальном виде без звездочек
+#             print(args) # звездочку указываем только когд прин аргум  и когда вызываем функц, в ост виде без звезд
 #             return arg * fn(*args, **kwargs)
 #
 #         return inner
@@ -2916,7 +2916,7 @@ from turtledemo.penrose import start
 #             for i in range(len(args)):
 #                 if type(f_args[i]) is not args[i]:
 #                     # return "Неверный тип данных"
-#                     raise TypeError('Неверный тип данных')# генерирует исключение # явное пояснение почему прога прекратилась
+#                     raise TypeError('Неверный тип данных')# генерир искл # явное пояснение почему прога прекратилась
 #             for k in kwargs:
 #                 if type(kwargs[k]) is not kwargs[k]:
 #                     raise TypeError('Неверный тип данных')
@@ -2962,7 +2962,7 @@ from turtledemo.penrose import start
 # print(0b10010)
 # print(0o22)
 # print(0x12)
-# print(0b10010 + 0o22 + 0x12 + 6) # можем работать с числами в любой системе счислений, на выходе десятичная по умолчанию
+# print(0b10010 + 0o22 + 0x12 + 6) # можем работать с числами в любой системе счислений, на выходе десятичн по умолчан
 # #буквы префикса лучше использовать нижнего регистра
 # q = 'Pyt'
 # w = 'hon'
@@ -3360,7 +3360,7 @@ from turtledemo.penrose import start
 # print(re.split(reg, st))
 
 
-#  Занятие 17 от 17.03.25
+ # Занятие 17 от 17.03.25
 import re
 
 # d = "Word2016, PS6,AI5"
@@ -3834,6 +3834,7 @@ import re
 import os
 import time
 
+
 # path = "main.py"
 # print(os.path.getsize(path))  # размер файла
 # print(os.path.getatime(path))  # время последнего доступа к файлу в секундах
@@ -3868,3 +3869,518 @@ import time
 #         print(f"{p} - file -{os.path.getsize(p)} bytes ")
 #     if os.path.isdir(p):
 #         print(f"{p}-dir")
+
+#  Занятие 21 от 31.03.25
+# import os
+# #
+# #
+# # def info_files(root, folder):
+# #     for root, dirs, files in os.walk(root):
+# #         for file in files:
+# #             file_path = os.path.join(root, file)
+# #             file_size = os.path.getsize(file_path)
+# #             if file_size == 0:
+# #                 os.renames(file_path, os.path.join(folder, file))
+# #                 print(f"Файл {file} перемещен из папки {root} в папку {folder}")
+# #             else:
+# #                 print(f"{file_path} - {file_size} bytes ")
+# #
+# #
+# # info_files("Work",r"Work\empty_files")
+# #
+# # # Work\w.txt
+# # # Work\F1\f11.txt
+# # # Work\F1\f12.txt
+# # # Work\F1\f13.txt
+# # # Work\F2\F21\f211.txt
+# # # Work\F2\F21\f212.txt
+
+# ООП
+
+
+# class Point:
+#     x = 1
+#     y = 2
+#
+#     def set_coord(self):
+#         print(self.__dict__)
+#
+#
+# p1 = Point()  # объект или экземпляр класса Point
+# p1.x = 5
+# p1.y = 10
+# p1.set_coord()
+# Point.set_coord(p1)
+# p2 = Point()
+# p2.set_coord()
+# print(p1.x)
+# p1.x = 100
+# print(p1.x)
+# print(Point.x)
+# Point.x = 200
+# print(Point.x)
+# print(id(p1))
+# print(id(Point))
+# print(p1.x, p1.y)
+# p2 = Point()
+# print(p2.x, p2.y)
+# print(p1.__dict__) # возвращает словарь свойств в определенных экземпларах класса
+# print(p2.__dict__)
+# print(Point.__dict__)
+
+
+# class Point:
+#     x = 1
+#     y = 2
+#
+#     def set_coord(self, x1, y1):
+#         self.x = x1
+#         self.y = y1
+#
+#
+# p1 = Point()
+# p1.set_coord(5, 10)
+# Point.set_coord(p1, 10, 20)
+# print(p1.__dict__)
+#
+# p2 = Point()
+# p2.set_coord(2, 7)
+# print(p2.__dict__)
+
+# class Human:
+#     name = "name"
+#     birth_day = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print(" Персональные данные ".center(40, "*"))
+#         print(f"Имя: {self.name}\nДата рождения: {self.birth_day}\nНомер телефона: {self.phone}\nСтрана: {self.country}"
+#               f"\nГород:{self.city}\nАдрес: {self.address}")
+#         print("=" * 40)
+#
+#     def input_info(self, f_name, b_day, ph, country_, city_, address):
+#         self.name = f_name
+#         self.birth_day = b_day
+#         self.phone = ph
+#         self.country = country_
+#         self.city = city_
+#         self.address = address
+#
+#     def set_name(self, name):  # установили новое имя
+#         self.name = name
+#
+#     def get_name(self):  # получить имя
+#         return self.name
+#
+#
+# h1 = Human()
+# h1.print_info()
+# h1.input_info("Юля", "23.05.1986", "45-46-98", "Россия", "Москва", "Чистопрудный бульвар, 1A")
+# h1.print_info()
+# h1.set_name("Юлия")
+# h1.print_info()
+# print(h1.get_name())
+# # через set и get должен быть доступ к каждому свойству
+
+# class Person:
+#     skill = 10  # так же может храниться внизу
+#
+#     # name = ""
+#     # surname = ""
+#
+#     def __init__(self, name, surname): # без разницы где располагается этот метод
+#         self.name = name
+#         self.surname = surname
+#
+#     def __del__(self): # отрабатывает в самом конце, после завершения программы
+#         print("Удаление экземпляра\n\n")
+#
+#     def print_info(self):
+#         print(f"Данные сотрудника: {self.name},{self.surname}")
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill, "\n")
+#
+#
+# p1 = Person("Виктор", "Резник")
+# p1.print_info()
+# p1.add_skill(3)
+# # del p1
+# p1 = 5
+#
+# p2 = Person("Анна", "Долгих")
+# p2.print_info()
+# p2.add_skill(2)
+#  # __init__- инициализатор, вызывается при создании экземпляра класса, инициализатор в классе только один!
+#  # он делает инициализацию каких-то первоначальных свойств экземпляра класса
+#
+#  # свойства класса:
+#  #=== динамические, не имеют первоначального значения, добавляются при помощи метода при создании экземпляра класса
+# # === статические, просто определены внутри класса без специального метода
+#  # по правилу хорошего тона статические свойства пишутся сверху, дальше магические(дендер)методы, дальше обычные методы
+#
+# # сначала создали класс, потом экземпляр
+
+# class Person:
+#     count = 0
+#
+#     def __init__(self, name, surname): # без разницы где располагается этот метод
+#         self.name = name
+#         self.surname = surname
+#         Person.count += 1
+#
+#     def print_info(self):
+#         print(f"Данные сотрудника: {self.name},{self.surname}")
+#
+#
+# p1 = Person("Виктор", "Резник")
+# p1.print_info()
+#
+# print(Person.count)
+#
+# p2 = Person("Анна", "Долгих")
+# p2.print_info()
+#
+# print(p1.count)
+# print(p2.count)
+# p3 = Person("Лол","Кек")
+# print(Person.count)
+#
+# # статическое свойство привязывается к классу
+# что  в ините создано видно в пределах всего класса
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#         if Robot.k == 0:
+#             print(self.name, "был последним")
+#         else:
+#             print("Работающих роботов осталось:", Robot.k)
+#
+#     def say_hi(self):
+#         print("Приветствую! Меня зовут:", self.name)
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print("Численность роботов:", Robot.k)
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# droid3 = Robot("ANNIHILATOR")
+# droid3.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n")
+# print("\nРоботы проделали какую-то работу.Давайте их выключим\n")
+# del droid1
+# del droid2
+# del droid3
+# print("Численность роботов:", Robot.k)
+
+
+#  Занятие 22 от 02.04.25
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def __check_value(c):
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         else:
+#             return False
+#
+#     def set_coord(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def set_coord_x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#
+#         else:
+#             print("Координата x должна быть числом")
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#
+# p1 = Point(5, 10)
+# # print(p1.__x, p1.__y)
+# # p1.z = 20
+# # p1.__x = 100
+# # p1.__y = "abc"
+# # print(p1.__x, p1.__y)
+# print(p1.__dict__)
+# p1.set_coord(150, 20)
+# print(p1.__dict__)
+# print(p1.get_coord())
+# # print(Point.__dict__)
+# p1.set_coord(150, "20")
+# p1.set_coord(15.5, 28.89)
+# print(p1.get_coord())
+# p1.set_coord_x(1)
+# print(p1.get_coord())
+# p1.set_coord_x("123")
+# print(p1.get_coord())
+# p1._Point__x = 111
+# print(p1._Point__x)
+# print(p1.__dict__)
+# import math
+#
+#
+# class Rectangle:
+#     def __init__(self, lens=1, width=1):
+#         self.__lens = lens
+#         self.__width = width
+#
+#     def __check_value(c):
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         else:
+#             return False
+#
+#     def get_width(self):
+#         return self.__width
+#
+#     def get_lens(self):
+#         return self.__lens
+#
+#     def set_width(self, width):
+#         if Rectangle.__check_value(width):
+#             self.__width = width
+#         else:
+#             print("Параметр ширины должен быть числом")
+#
+#     def set_lens(self, lens):
+#         if Rectangle.__check_value(lens):
+#             self.__lens = lens
+#         else:
+#             print("Параметр длины должен быть числом")
+#
+#     def get_area(self):
+#         return self.__lens * self.__width
+#
+#     def get_perimetr(self):
+#         return 2 * (self.__lens + self.__width)
+#
+#     def get_hypotenuse(self):
+#         return round(math.sqrt(self.__lens ** 2 + self.__width ** 2), 2)
+#
+#     def get_draw(self):
+#         print(("*" * self.__width + "\n") * self.__lens)
+#
+#
+# r1 = Rectangle()
+# print("Длина прямоугольника", r1.get_lens())
+# print("Ширина прямоугольника", r1.get_width())
+# r1.set_lens(3)
+# r1.set_width(9)
+# print("Длина прямоугольника", r1.get_lens())
+# print("Ширина прямоугольника", r1.get_width())
+# print("Площадь прямоугольника:", r1.get_area())
+# print("Периметр прямоугольника:", r1.get_perimetr())
+# print("Гипотенуза прямоугольника:", r1.get_hypotenuse())
+# r1.get_draw()
+
+# class Point:
+#     __slots__ = ["x", "y", "z"] # допускает список или кортеж
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# p1 = Point(5, 10)
+# p1.z = 20
+# # print(p1.__dict__)
+# print(p1.x, p1.y, p1.z)
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __check_value(c):
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         else:
+#             return False
+#
+#     def __set_coord_x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("Координата x должна быть числом")
+#
+#     def __get_coord_x(self):
+#         return self.__x
+#
+#     def __del_coord_x(self):
+#         print("Удаление данных")
+#         del self.__x
+#
+#     coordX = property(__get_coord_x, __set_coord_x, __del_coord_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.coordX = 20.5
+# print(p1.coordX)
+# del p1.coordX
+# print(p1.__dict__)
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __check_value(c):
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         else:
+#             return False
+#
+#     @property
+#     def x(self):
+#         return self.__x
+#
+#     @x.setter
+#     def x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("Координата x должна быть числом")
+#
+#     @x.deleter
+#     def x(self):
+#         print("Удаление данных")
+#         del self.__x
+#
+#     # coordX = property(__get_coord_x, __set_coord_x, __del_coord_x)
+#
+#
+# p1 = Point(5, 10)
+# print(p1.x)
+# p1.x = 50
+# print(p1.x)
+# del p1.x
+# print(p1.__dict__)
+
+# class Person:
+#     def __init__(self, name="", age=0):
+#         self.__name = name
+#         self.__age = age
+#
+#     def __check_name(c):
+#         if isinstance(c, str):
+#             return True
+#         else:
+#             return False
+#
+#     def __check_age(c):
+#         if isinstance(c, int):
+#             return True
+#         else:
+#             return False
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, name):
+#         if Person.__check_name(name):
+#             self.__name = name
+#         else:
+#             print("Координата x должна быть числом")
+#
+#     @name.deleter
+#     def name(self):
+#         print("Удаление данных")
+#         del self.__name
+#
+#     @property
+#     def age(self):
+#         return self.__age
+#
+#     @age.setter
+#     def age(self, age):
+#         if Person.__check_age(age):
+#             self.__age = age
+#         else:
+#             print("Координата x должна быть числом")
+#
+#     @age.deleter
+#     def age(self):
+#         print("Удаление данных")
+#         del self.__age
+#
+#
+# p1 = Person("Irina", 34)
+# print(p1.__dict__)
+# p1.name = "Leha"
+# p1.age = 20
+# print(p1.__dict__)
+# del p1.name
+# print(p1.__dict__)
+
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     @staticmethod # декоратор для статических методов
+#     def get_count(): # Случай когда метод не имеет параметр self
+#         return Point.__count
+#
+#
+# p1 = Point()
+# p2 = Point()
+# p3 = Point()
+# print(Point.get_count())
+# # статические методы не относятся к экземпляру класса, не ссылается на экземпляр класса  и чаще
+# # вызываются по имени класса
+def inc(x):
+    return x + 1
+
+
+def dec(x):
+    return x - 1
+
+
+print(inc(10), dec(10))
+
+
+class Change:
+    @staticmethod
+    def inc(x):
+        return x + 1
+
+    @staticmethod
+    def dec(x):
+        return x - 1
+
+
+print(Change.inc(10), Change.dec(10))
