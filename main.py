@@ -3360,7 +3360,7 @@ from turtledemo.penrose import start
 # print(re.split(reg, st))
 
 
- # Занятие 17 от 17.03.25
+# Занятие 17 от 17.03.25
 import re
 
 # d = "Word2016, PS6,AI5"
@@ -4362,25 +4362,231 @@ import time
 # print(Point.get_count())
 # # статические методы не относятся к экземпляру класса, не ссылается на экземпляр класса  и чаще
 # # вызываются по имени класса
-def inc(x):
-    return x + 1
+# def inc(x):
+#     return x + 1
+#
+#
+# def dec(x):
+#     return x - 1
+#
+#
+# print(inc(10), dec(10))
+#
+#
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#
+# print(Change.inc(10), Change.dec(10))
+
+#  Занятие 23 от 07.04.25
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#
+# ch1 = Change()
+# print(Change.inc(10), Change.dec(10))
+# print(ch1.inc(10), ch1.dec(10))
+
+# class Numbers:
+#     @staticmethod
+#     def max(a, b, c, d):
+#         mx = a  # строго на 4 элемента
+#         if b > mx:
+#             mx = b
+#         if c > mx:
+#             mx = c
+#         if d > mx:
+#             mx = d
+#         return mx
+#
+#     @staticmethod
+#     def min(*args):
+#         mn = args[0]
+#         for i in args:
+#             if i < mn:
+#                 mn = i
+#         return mn
+#
+#     @staticmethod
+#     def average(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(n):
+#         fact = 1
+#         for i in range(1, n+1):
+#             fact *= i
+#         return fact
+#
+#
+# print(Numbers.max(3, 5, 7, 9))
+# print(Numbers.min(3, 5, 7, 9))
+# print(Numbers.average(3, 5, 7, 9))
+# print(Numbers.factorial(5))
+
+# class Date:
+#     def __init__(self, day, month, year):
+#         self.day = day
+#         self. month = month
+#         self.year = year
+#
+#     @classmethod
+#     def from_string(cls, string_date):
+#         day, month, year = map(int, string_date.split("."))
+#         date1 = cls(day, month, year)
+#         return date1
+#
+#     def string_to_db(self):
+#         return f"{self.year}-{self.month}-{self.day}"
+#
+#
+# # string_date = "23.10.2025"
+# # day, month, year = map(int, string_date.split("."))
+# # # print(day, month, year)
+# # date = Date()
+# d1 = Date.from_string("23.10.2025")
+# print(d1.string_to_db())
+
+# class Account:
+#     rate_usd = 0.013
+#     rate_eur = 0.011
+#     suffix = "RUB"
+#     suffix_usd = "USD"
+#     suffix_eur = "EUR"
+#
+#     def __init__(self, num, surname, percent, value):
+#         self.num = num
+#         self.surname = surname
+#         self.percent = percent
+#         self.value = value
+#         print(f"Счет #{self.num} принадлежащий {self.surname} был открыт.")
+#         print("*" * 50)
+#
+#     def __del__(self):
+#         print("*" * 50)
+#         print(f"Счет #{self.num} принадлежащий {self.surname} был закрыт.")
+#
+#     def print_balance(self):
+#         print(f"Текущий баланс {self.value} {Account.suffix}")
+#
+#     def print_info(self):
+#         print("Информация о счете:")
+#         print("-" * 20)
+#         print(f"#{self.num}")
+#         print(f"Владелец:{self.surname}")
+#         self.print_balance()
+#         print(f"Проценты: {self.percent:.0%}")
+#         print("-" * 20)
+#
+#     @staticmethod
+#     def convert(value, rate):
+#         return value * rate
+#
+#     def cotvert_to_usd(self):
+#         usd_val = Account.convert(self.value, Account.rate_usd)
+#         print(f"Состояние счета: {usd_val} {Account.suffix_usd}")
+#
+#     def cotvert_to_eur(self):
+#         eur_val = Account.convert(self.value, Account.rate_eur)
+#         print(f"Состояние счета: {eur_val} {Account.suffix_eur}")
+#
+#     @classmethod
+#     def set_eur_rate(cls, rate):
+#         cls.rate_eur = rate
+#
+#     @classmethod
+#     def set_usd_rate(cls, rate):
+#         cls.rate_usd = rate
+#
+#     def edit_owner(self, surname):
+#         self.surname = surname
+#
+#     def add_percents(self):
+#         self.value += self.value * self.percent
+#         print("Проценты были успешно начислены!")
+#         self.print_balance()
+#
+#     def withdrawmoney(self, val):
+#         if val > self.value:
+#             print(f"К сожалению у вас нет {val} {Account.suffix}")
+#             self.print_balance()
+#         else:
+#             print(f"{val} {Account.suffix} было успешно снято!")
+#             self.value -= val
+#             self.print_balance()
+#
+#     def add_money(self, val):
+#         self.value += val
+#         print(f"{val} {Account.suffix} было успешно добавлено!")
+#         self.print_balance()
+#
+#
+# account = Account("12345", "Долгих", 0.03, 1000)
+# account.print_balance()
+# account.print_info()
+# account.cotvert_to_usd()
+# account.cotvert_to_eur()
+# Account.set_eur_rate(3)
+# Account.set_usd_rate(2)
+# print()
+# account.cotvert_to_usd()
+# account.cotvert_to_eur()
+# account.edit_owner("Дюма")
+# account.print_info()
+# print()
+# account.add_percents()
+# print()
+# account.withdrawmoney(100)
+# print()
+# account.withdrawmoney(3000)
+# print()
+# account.add_money(5000)
+# print()
+# account.withdrawmoney(3000)
+# print()
+import re
 
 
-def dec(x):
-    return x - 1
+class UserData:
+    def __init__(self, fio, old, ps, weight):
+        self.verify_fio(fio)
+        self.verify_old(old)
 
+        self.__fio = fio
+        self.__old = old
+        self.__password = ps
+        self.__weight = weight
 
-print(inc(10), dec(10))
-
-
-class Change:
     @staticmethod
-    def inc(x):
-        return x + 1
+    def verify_fio(fio):
+        if not isinstance(fio, str):
+            raise TypeError("ФИО должно быть строкой")
+        f = fio.split()
+        if len(f) != 3:
+            raise TypeError("Неверный формат ФИО")
+        letter = "".join(re.findall(r"[a-zа-яё-]", fio, re.IGNORECASE))
+        for s in f:
+            print(s.strip(letter))
+            if len(s.strip(letter)) != 0:
+                raise TypeError("В ФИО можно использовать буквы и дефис")
 
     @staticmethod
-    def dec(x):
-        return x - 1
+    def verify_old(old):
+        if not isinstance(old, int) or not 14 < old < 100:
+            raise TypeError("Возраст должен быть числом в диапазоне от 14 до 100 лет")
 
 
-print(Change.inc(10), Change.dec(10))
+p1 = UserData("Волков-Сидоров Игорь Николаевич", 26, "1234 4567890", 80.8)
