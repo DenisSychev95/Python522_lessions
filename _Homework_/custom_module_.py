@@ -1,3 +1,4 @@
+__autor__ = "sychev_denis"
 # Работа с экземплярами класса: возможность передачи данных/создания свойства self.__data по умолчанию.
 # Передача имени для json файла в self.__filename/создание свойства по умолчанию.
 import json
@@ -77,8 +78,8 @@ class Country:
     # Возвращает отформатированное имя объекта(если строка не пустая) или имя по умолчанию(Default)
     @staticmethod
     def valid_obj_name(name):
-        pattern = r"[a-za-яё\s-']+"
-        valid_name = "".join(re.findall(pattern, name.strip().lower())).capitalize()
+        pattern = r"[a-za-яё']+[\s-]?[a-za-яё']+"
+        valid_name = "".join(re.findall(pattern, name.strip().lower())).title()
         if len(valid_name) != 0:
             valid_obj_name = valid_name
         else:
@@ -135,7 +136,7 @@ class Country:
     # ничего не возвращает, записывает данные в файл из self.data.
     def dump(self):
         with open(self.json_name(), "w") as fw:
-            json.dump(self.data, fw, indent=2, ensure_ascii=False)
+            json.dump(self.__data, fw, indent=2, ensure_ascii=False)
             print("Файл сохранен")
 
     # Метод добавления данных: считывает данные из файла, проверяет на наличие ключа с таким именем,
@@ -150,7 +151,7 @@ class Country:
                   f"(пункт №4 в интерактивном меню)")
         else:
             self.data.update({valid_country: valid_capital})
-            print(f"В данные успешно добавлен элемент:\n{{{valid_country}: {self.data[valid_country]}}}")
+            print(f"В данные успешно добавлен элемент:\n{{{valid_country}: {self.__data[valid_country]}}}")
             self.dump()
 
     # Метод редактирования данных: считывает данные из файла, проверяет на наличие ключа с таким именем,
@@ -161,9 +162,9 @@ class Country:
         valid_country = Country.valid_obj_name(country)
         valid_new_capital = Country.valid_obj_name(new_capital)
         if self.search(valid_country):
-            print(f"Для страны: {valid_country} -имя столицы: {self.data[valid_country]} "
+            print(f"Для страны: {valid_country} -имя столицы: {self.__data[valid_country]} "
                   f"успешно изменено на {valid_new_capital}.")
-            self.data[valid_country] = valid_new_capital
+            self.__data[valid_country] = valid_new_capital
             self.dump()
         else:
             Country.country_not_found(valid_country)
@@ -174,9 +175,9 @@ class Country:
         self.load()
         valid_country = Country.valid_obj_name(country)
         if self.search(valid_country):
-            dict_to_print = {"страна": valid_country, "столица": self.data[valid_country]}
+            dict_to_print = {"страна": valid_country, "столица": self.__data[valid_country]}
             print(f"Элемент {dict_to_print} удален.")
-            del self.data[valid_country]
+            del self.__data[valid_country]
             self.dump()
         else:
             Country.country_not_found(valid_country)
@@ -188,7 +189,7 @@ class Country:
         valid_country = Country.valid_obj_name(country)
         if self.search(valid_country):
             print(f"Элемент при считывании данных из файла найден:\n"
-                  f"{{страна: {valid_country}, столица: {self.data[valid_country]}}}")
+                  f"{{страна: {valid_country}, столица: {self.__data[valid_country]}}}")
         else:
             Country.country_not_found(valid_country)
 
@@ -200,27 +201,3 @@ class Country:
     def show_data(self):
         self.load()
         print(f"Распакованные данные из файла:\n{self.__data}")
-
-
-my_data = {"Минск": "Беларусь"}
-c_example = Country(my_data, 3)
-print(c_example.__dict__)
-# d = [("один", "1")]
-# b = [["один", "1"]]
-# g = (("один", "1"),)
-# e = ("один", "1")
-# c1 = Country(e)
-# print(c1.__dict__)
-# c1()
-
-# file_name_example = "my_file_name"
-# my_data = {"Минск": "Беларусь"}
-# c1 = Country()
-# print(c1.__dict__)
-#
-# c2 = Country(data=my_data)
-# print(c2.__dict__)
-# c3 = Country(my_data, file_name_example)
-# print(c3.__dict__)
-
-
