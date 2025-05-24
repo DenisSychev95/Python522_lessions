@@ -1,30 +1,43 @@
-a = {"один": "1"}
-b = [["один", "1"]]
-# c = ["один", "1"]
-d = [("один", "1")]
-# e = ("один", "1")
-# f = (["один", "1"])
-g = (("один", "1"),)
-h = ({"один": "1"},)
+import os
+import os.path
+import requests
 
-lst = [a, b, d, g, h]
-# for e in lst:
-#     print(type(dict(e)))
+directory = "sychev_pocket"
+if not os.path.exists(directory):
+    os.mkdir(directory)
 
-# e = ("один", "1")
-# # fr = dict(e)
-# # print(type(fr))
-# lst1 = []
-# try:
-#     for e in lst:
-#         if
-#         lst1.append(dict(e))
-# except ValueError:
-#     print("Некорректное значение")
-# print(lst1)
-h = ({"один": "1"},)
-try:
-    my_data = dict(h)
-except ValueError:
-    raise TypeError("Некорректный тип данных для data")
+path_directory = os.path.join(os.getcwd(), directory)
+file_name1 = os.path.join(path_directory, "__init__.py")
+file_name2 = os.path.join(path_directory, "f_model.py")
+file_name3 = os.path.join(path_directory, "f_controller.py")
+file_name4 = os.path.join(path_directory, "f_view.py")
+response1 = requests.get(
+    "https://raw.githubusercontent.com/DenisSychev95/Python_homework/refs/heads/master/f_model.py").text
+response2 = requests.get(
+    "https://raw.githubusercontent.com/DenisSychev95/Python_homework/refs/heads/master/f_controller.py").text
+response3 = requests.get(
+    "https://raw.githubusercontent.com/DenisSychev95/Python_homework/refs/heads/master/f_view.py").text
 
+with open(file_name1, "w", encoding="utf-8") as f:
+    f.write("")
+with open(file_name2, "w", encoding="utf-8") as f:
+    f.write(response1)
+with open(file_name3, "w", encoding="utf-8") as f:
+    f.write(response2)
+with open(file_name4, "w", encoding="utf-8") as f:
+    f.write(response3)
+
+# Ссылка на файл с 20-ю заполненными фильмами
+file_path = "https://github.com/DenisSychev95/Python_homework/blob/master/films.txt"
+
+# # Пожалуйста, запустите этот блок кода повторно для тестирования приложения
+# from sychev_pocket.f_controller import Controller
+#
+#
+# def project():
+#     project_hw = Controller()
+#     project_hw.start()
+#
+#
+# if __name__ == "__main__":
+#     project()

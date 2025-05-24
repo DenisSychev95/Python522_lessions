@@ -6429,41 +6429,310 @@ import time
 # group2.dump_to_json()
 # group2.load_from_file()
 
-import requests
-import json
+# import requests
+# import json
+#
+# response = requests.get("https://jsonplaceholder.typicode.com/todos")
+# # print(response)
+# # # print(response.text)
+# # print(type(response.text))
+# todos = json.loads(response.text)
+# # # print(todos)
+# # print(type(todos))
+# # print(type(todos[0]))
+#
+# todos_by_user = {}
+# for todo in todos:
+#     if todo["completed"]:
+#         try:
+#             todos_by_user[todo["userId"]] += 1
+#         except KeyError:
+#             todos_by_user[todo["userId"]] = 1
+#
+# print(todos_by_user)
+#
+# top_users = sorted(todos_by_user.items(), key=lambda item: item[1], reverse=True)
+# print(top_users)
+# max_complete = top_users[0][1]
+# print(max_complete)
+# users = []
+# for user, num_complete in top_users:
+#     if num_complete < max_complete:
+#         break
+#     users.append(str(user))
+# print(users)
+# users = ["11"]
+# max_users = " and ".join(users)
+# print(max_users)
+# max_users = "11"
+# e = "s" if len(users) > 1 else ""
+# print(f"User{e} {max_users} completed {max_complete} TODOs")
 
-response = requests.get("https://jsonplaceholder.typicode.com/todos")
-# print(response)
-# # print(response.text)
-# print(type(response.text))
-todos = json.loads(response.text)
-# # print(todos)
-# print(type(todos))
-# print(type(todos[0]))
+#  Занятие 31 от 12.05.25
 
-todos_by_user = {}
-for todo in todos:
-    if todo["completed"]:
-        try:
-            todos_by_user[todo["userId"]] += 1
-        except KeyError:
-            todos_by_user[todo["userId"]] = 1
+# import json
+#
+#
+# class CountryCapital:
+#     @staticmethod
+#     def load(file_name):
+#         try:
+#             data = json.load(open(file_name, encoding="utf-8"))
+#         except FileNotFoundError:
+#             data = {}
+#         finally:
+#             return data
+#
+#     @staticmethod
+#     def add_country(file_name):
+#         new_country = input("Введите название страны: ").lower()
+#         new_capital = input("Введите название столицы: ").lower()
+#
+#         # try:
+#         #     data = json.load(open(file_name, encoding="utf-8"))
+#         # except FileNotFoundError:
+#         #     data = {}
+#         data = CountryCapital.load(file_name)
+#         data[new_country] = new_capital
+#         with open(file_name, "w", encoding="utf-8") as f:
+#             json.dump(data, f, indent=2, ensure_ascii=False)
+#
+#     @staticmethod
+#     def load_from_file(file_name):
+#         with open(file_name, encoding="utf-8") as f:
+#             print({k.title(): v.title() for k, v in json.load(f).items()})
+#
+#     @staticmethod
+#     def delete_country(file_name):
+#         del_country = input("Введите название страны: ").lower()
+#         # try:
+#         #     data = json.load(open(file_name, encoding="utf-8"))
+#         # except FileNotFoundError:
+#         #     data = {}
+#         data = CountryCapital.load(file_name)
+#         if del_country in data:
+#             del data[del_country]
+#             with open(file_name, "w", encoding="utf-8") as f:
+#                 json.dump(data, f, indent=2, ensure_ascii=False)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @staticmethod
+#     def search_data(file_name):
+#         country = input("Введите название страны: ").lower()
+#         # try:
+#         #     data = json.load(open(file_name, encoding="utf-8"))
+#         # except FileNotFoundError:
+#         #     data = {}
+#         data = CountryCapital.load(file_name)
+#         if country in data:
+#             print(f"Страна {country.title()} столица {data[country].title()} есть в словаре")
+#         else:
+#             print(f"Страны {country.title()} нет в словаре")
+#
+#     @staticmethod
+#     def edit_data(file_name):
+#         country = input("Введите страну для корректировки: ").lower()
+#         new_capital = input("Введите новое название столицы: ").lower()
+#         # try:
+#         #     data = json.load(open(file_name, encoding="utf-8"))
+#         # except FileNotFoundError:
+#         #     data = {}
+#         data = CountryCapital.load(file_name)
+#         if country in data:
+#             data[country] = new_capital
+#             with open(file_name, "w", encoding="utf-8") as f:
+#                 json.dump(data, f, indent=2, ensure_ascii=False)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#
+# file = "list_capital.json"
+# while True:
+#     index = input("Выбор действия\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод:")
+#     if index == "1":
+#         CountryCapital.add_country(file)
+#     elif index == "2":
+#         CountryCapital.delete_country(file)
+#     elif index == "3":
+#         CountryCapital.search_data(file)
+#     elif index == "4":
+#         CountryCapital.edit_data(file)
+#     elif index == "5":
+#         CountryCapital.load_from_file(file)
+#     elif index == "6":
+#         break
+#     else:
+#         print("Введен некорректный номер")
 
-print(todos_by_user)
+# import csv
 
-top_users = sorted(todos_by_user.items(), key=lambda item: item[1], reverse=True)
-print(top_users)
-max_complete = top_users[0][1]
-print(max_complete)
-users = []
-for user, num_complete in top_users:
-    if num_complete < max_complete:
-        break
-    users.append(str(user))
-print(users)
-users = ["11"]
-max_users = " and ".join(users)
-print(max_users)
-max_users = "11"
-e = "s" if len(users) > 1 else ""
-print(f"User{e} {max_users} completed {max_complete} TODOs")
+# with open("data1.csv") as f:
+#     file_reader = csv.reader(f, delimiter=";")
+#     # print(file_reader)
+#     count = 0
+#     for row in file_reader:
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {", ".join(row)}")
+#         else:
+#             print(f"\t{row[0]} - {row[1]}. Родился в {row[2]} году.")
+#         count += 1
+#     print(f"Всего в файле {count} строки.")
+# # csv.reader()- возвращает данные в виде списка
+
+# with open("data1.csv") as f:
+#     fields = ["Имя", "Профессия", "Год рождения"]
+#     file_reader = csv.DictReader(f, delimiter=";", fieldnames=fields)
+#     count = 0
+#     for row in file_reader:
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {", ".join(row)}")
+#         print(f"\t{row["Имя"]} - {row["Профессия"]}. Родился в {row["Год рождения"]} году.")
+#         count += 1
+#     print(f"Всего в файле {count} строки.")
+#
+# # csv.DictReader() - возвращает словарь из данных
+# # подразумевается, что заголовочной строки может не быть, ее можно задать только с помощью DictReader
+# # В каждой строке должно быть одинаковое количество яйчеек(табличное представление)
+
+# csv.writer() работает со списком, построчно!
+import csv
+
+# with open("student.csv", "w") as f:
+#     writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#     writer.writerow(["Имя", "Класс", "Возраст"])
+#     writer.writerow(["Женя", "9", "15"])
+#     writer.writerow(["Саша", "5", "12"])
+#     writer.writerow(["Маша", "11", "18"])
+
+# data = [['hostname', 'vendor', 'model', 'location'],
+#         ['sw1', 'Cisco', '3750', 'London, Best str'],
+#         ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
+#         ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
+#         ['sw4', 'Cisco', '3650', 'London, Best str']]
+#
+# with open("sw_data.csv", "w") as f:
+#     writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#     # for row in data:
+#     #     writer.writerow(row)
+#     writer.writerows(data) # заменяет цикл, должна быть подготовленная структура- список списков
+# with open("sw_data.csv") as f:
+#     print(f.read())
+
+# with open("stud.csv", "w") as f:
+#     names = ["Имя", "Возраст"]
+#     file_writer = csv.DictWriter(f, delimiter=";", lineterminator="\r", fieldnames=names)
+#     # file_writer.writeheader() # добавляет заголовочную строку(если хотим, чтобы она физически сохранилась в файл)
+#     file_writer.writerow({"Имя": "Саша", "Возраст": 6})
+#     file_writer.writerow({"Имя": "Маша", "Возраст": 10})
+#     file_writer.writerow({"Имя": "Вова", "Возраст": 15})
+# data = [{
+#     'hostname': 'sw1',
+#     'location': 'London',
+#     'model': '3750',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw2',
+#     'location': 'Liverpool',
+#     'model': '3850',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw3',
+#     'location': 'Liverpool',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw4',
+#     'location': 'London',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }]
+# with open("dict_writer.csv", "w") as f:
+#     writer = csv.DictWriter(f, delimiter=";", lineterminator="\r", fieldnames=data[0].keys())
+#     writer.writeheader()
+#     for d in data:
+#         writer.writerow(d)
+#
+# # https://jsonplaceholder.typicode.com/todos - считать с json и сохранить в csv- ДЗ!!
+
+#  Занятие 32 от 14.05.25
+#  Занятие 33 от 19.05.25
+# Базы данных SQlite
+# Расширения файлов *.db, *.sqlite
+# import sqlite3
+
+
+# con = sqlite3.connect("profile.db")
+# cur = con.cursor()
+# cur.execute("""""")
+# con.close()
+
+# with sqlite3.connect("profile.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""CREATE TABLE IF NOT EXISTS users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     summa REAL,
+#     date BLOB
+#     )""")
+#     cur.execute("DROP TABLE users")
+
+#  Занятие 34 от 21.05.25
+# import sqlite3
+# with sqlite3.connect("users.db") as con:
+#     cur = con.cursor()
+    # cur.execute("""CREATE TABLE IF NOT EXISTS person(
+    #  id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #  name TEXT NOT NULL,
+    #  phone BLOB NOT NULL DEFAULT "+79090000000",
+    #  age INTEGER CHECK(age > 0 AND age < 100),
+    #  email TEXT UNIQUE
+    #  )""")
+
+    # cur.execute("""
+    # ALTER TABLE person
+    # RENAME TO person_table;
+    # """)
+
+    # cur.execute("""
+    # ALTER TABLE person_table
+    # ADD COLUMN address TEXT NOT NULL DEFAULT "example_address"
+    # """)
+
+    # cur.execute("""
+    # ALTER TABLE person_table
+    # RENAME COLUMN address TO home_address
+    # """)
+
+    # cur.execute("""
+    # ALTER TABLE person_table
+    # DROP COLUMN home_address
+    # """)
+
+    # cur.execute("""
+    # DROP TABLE person_table
+    # """)
+
+
+import sqlite3
+with sqlite3.connect("db_3.db") as con:
+    cur = con.cursor()
+    cur.execute("""SELECT *
+    FROM T1
+    --LIMIT 5 OFFSET 2
+    LIMIT 2,5
+    """)
+    # for row in cur:
+    #     print(row)
+
+    # Методы для вывода информации
+    # res = cur.fetchall() # возвращает список кортежей всех строк
+    # print(res)
+
+    res2 = cur.fetchmany(12) # Возвращает список кортежей, может принимать количество(сколько выводить) по умолчанию- 1
+    print(res2) # если принимаемое число отличается, ошибка не возникает
+
+    res = cur.fetchone() # Вернет только первое значение-одно(КОРТЕЖ), где стоит курсор!
+    print(res)
+
